@@ -77,3 +77,11 @@ plt.figure()
 plt.imshow(wordcloud, interpolation="bilinear")
 # plt.axis("off")
 plt.show()
+
+
+print("LDA Algorithm")
+os.system("lda.py 1")
+
+print("LSA Algorithm")
+os.system("runClassification_LSA 1")
+os.system("inspect_LSA 1")
