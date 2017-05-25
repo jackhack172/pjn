@@ -7,6 +7,28 @@ import os
 from tf_idf import *
 from zad1 import lemmatize
 
+def show_chart(sortedKeywordsTable, max_elements):
+    x_values = []
+    y_values = []
+    x_ticks = []
+
+    totalKeywords = len(sortedKeywords)
+
+    for i in range(max_elements):
+        if i >= totalKeywords:
+            break
+        print(i)
+        x_values.append(i)
+        y_values.append(sortedKeywordsTable[i][1])
+        x_ticks.append(sortedKeywordsTable[i][0])
+
+    plt.figure()
+    plt.xticks(x_values, x_ticks, rotation=90)
+    plt.tight_layout()
+    plt.plot(x_values, y_values)
+    plt.savefig('wykres.png')
+    plt.show()
+
 d = path.dirname(__file__)
 text = open(path.join(d, 'tekst.txt')).read()
 
@@ -24,6 +46,8 @@ keywordcandidates = generate_candidate_keyword_scores(phraseList, wordscores)
 
 sortedKeywords = sorted(keywordcandidates.items(), key=operator.itemgetter(1), reverse=True)
 totalKeywords = len(sortedKeywords)
+
+show_chart(sortedKeywords,20)
 
 rake = Rake("SmartStoplist.txt")
 keywords = rake.run(text)
@@ -80,7 +104,6 @@ wordcloud = WordCloud(max_font_size=30,background_color='white').generate_from_f
 plt.figure()
 plt.imshow(wordcloud, interpolation="bilinear")
 plt.show()
-
 
 print("LDA Algorithm")
 os.system("lda.py 1")
