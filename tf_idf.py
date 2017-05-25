@@ -22,23 +22,25 @@ def analize_tf(text):
     for word, score in sorted_words:
         print("Word: {}, TF: {}".format(word, round(score, 5)))
         word_list.append(word)
-        word_list.append(' ')
-    word_str = ''.join(word_list)
-    return word_str
+        #word_list.append(' ')
+    #word_str = ''.join(word_list)
+    return scores
 
 def analize_tfidf(text, bloblist):
     scores = {word: tfidf(word, tb(text), bloblist) for word in tb(text).words}
     sorted_words = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    print(scores)
     word_list = []
     for word, score in sorted_words: #[:3]:
         print("Word: {}, TF-IDF: {}".format(word, round(score, 5)))
         word_list.append(word)
-        word_list.append(' ')
-    word_str = ''.join(word_list)
-    return word_str
+        #word_list.append(' ')
+    #word_str = ''.join(word_list)
+    print(sorted_words)
+    return scores
 
-"""
+
 text = "Ala ma kota i ma tez psa"
 bloblist = [text]
-analize_tfidf(text)
-"""
+analize_tfidf(text, bloblist)
+
