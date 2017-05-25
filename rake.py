@@ -154,15 +154,10 @@ if test:
 
     # generate candidate keyword scores
     keywordcandidates = generate_candidate_keyword_scores(phraseList, wordscores)
-    if debug: print (keywordcandidates)
 
     sortedKeywords = sorted(keywordcandidates.items(), key=operator.itemgetter(1), reverse=True)
-    if debug: print (sortedKeywords)
 
     totalKeywords = len(sortedKeywords)
-    if debug: print (totalKeywords)
-    print (sortedKeywords[0:int(totalKeywords / 3)])
 
     rake = Rake("SmartStoplist.txt")
     keywords = rake.run(text)
-print (keywords)
