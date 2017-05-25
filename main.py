@@ -1,9 +1,10 @@
 from builtins import print
 from rake import *
 from os import path
-from wordcloud import WordCloud
+#from wordcloud import WordCloud
 import matplotlib.pyplot as plt
-
+import os
+from .tf_idf import *
 # Read the whole text.
 from zad1 import lemmatize
 
@@ -76,6 +77,22 @@ wordcloud = WordCloud(max_font_size=30,background_color='white').generate_from_f
 plt.figure()
 plt.imshow(wordcloud, interpolation="bilinear")
 # plt.axis("off")
+plt.show()
+
+
+# TF
+freq = analize_tf(text)
+wordcloud = WordCloud(max_font_size=30,backgroung_color='white').generate(freq)
+plt.figure()
+plt.imgshow(wordcloud, interpolation='bilinear')
+plt.show()
+
+# TF-IDF
+bloblist = [text]
+freq = analize_tfidf(text, bloblist)
+wordcloud = WordCloud(max_font_size=30,backgroung_color='white').generate(freq)
+plt.figure()
+plt.imgshow(wordcloud, interpolation='bilinear')
 plt.show()
 
 
