@@ -31,7 +31,7 @@ def analize_tf(text):
 def analize_tfidf(text, bloblist):
     blob = tb(text)
     scores = {word: tfidf(word, blob, bloblist) for word in blob.words}
-    sorted_words = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    sorted_words = sorted(scores.items(), key=lambda x: x[1])
     print(scores)
     word_list = []
     for word, score in sorted_words: #[:3]:
@@ -41,4 +41,3 @@ def analize_tfidf(text, bloblist):
     #word_str = ''.join(word_list)
     print(sorted_words)
     return scores
-

@@ -7,7 +7,7 @@ from nltk.stem import WordNetLemmatizer
 
 speech_part={'ADJ':'a', 'ADV':'r', 'NOUN':'n', 'VERB':'v'}
 
-def lemmatize(text):
+def lemmatize(text, stop):
     lemmatized_text = ""
 
     tokenized_text = nltk.word_tokenize(text);
@@ -17,7 +17,9 @@ def lemmatize(text):
 
     for word in pos_tag_text:
         #print(wordnet_lemmatizer.lemmatize(word[0], pos=speech_part.get(word[1], 'n')))
-        lemmatized_text+=wordnet_lemmatizer.lemmatize(word[0], pos=speech_part.get(word[1], 'n'))+" "
+        if word[0].lower() in stop:
+            continue
+        lemmatized_text+=wordnet_lemmatizer.lemmatize(word[0].lower(), pos=speech_part.get(word[1], 'n'))+" "
 
     return lemmatized_text
 
